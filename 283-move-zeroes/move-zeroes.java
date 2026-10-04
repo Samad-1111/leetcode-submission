@@ -5,9 +5,9 @@ class Solution {
             if(nums[i] != 0){
                 nums[count++] = nums[i];
             }
-        }for(int j=count;j<nums.length;j++){
-            nums[j] = 0;
         }
-        System.out.println(Arrays.toString(nums));
+        for(int i = count;i< nums.length;i++){
+            nums[i] = 0;
+        }
     }
 }
