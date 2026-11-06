@@ -2,29 +2,29 @@ class Solution {
     public boolean wordPattern(String pattern, String s) {
         HashMap<Character,String> hm = new HashMap<>();
         HashMap<String,Character> hm2 = new HashMap<>();
-        String[] arr = s.split(" ");
-        
-        if(pattern.length() != arr.length){
+
+        String[] str = s.split(" ");
+
+        if(pattern.length() != str.length){
             return false;
         }
         for(int i =0;i<pattern.length();i++){
-            if(hm.containsKey(pattern.charAt(i))){
-                if(!(hm.get(pattern.charAt(i)).equals(arr[i]))){
+            String word = str[i];
+            char ch = pattern.charAt(i);
+            if(hm.containsKey(ch)){
+                if(!hm.get(ch).equals(word)){
                     return false;
                 }
             }
-                else{
-                    hm.put(pattern.charAt(i),arr[i]);
-                }
-            if(hm2.containsKey(arr[i])){
-                if(!(hm2.get(arr[i]).equals(pattern.charAt(i)))){
+            hm.put(ch,word);
+
+            if(hm2.containsKey(word)){
+                if(!hm2.get(word).equals(ch)){
                     return false;
                 }
             }
-            else{
-                hm2.put(arr[i],pattern.charAt(i));
-            }
-        }
-            return true;
+            hm2.put(word,ch);
+        }return true;
+        
     }
 }
