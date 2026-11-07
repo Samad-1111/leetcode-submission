@@ -1,20 +1,29 @@
 class Solution {
     public int firstUniqChar(String s) {
-        int n = -1;
-        char[] arr = s.toCharArray();
+        if(s.length() == 1){
+            return 0;
+        }
 
+        char[] arr = s.toCharArray();
         for(int i =0;i<s.length();i++){
-            boolean uni = true;
-            for(int j =0;j<s.length();j++){
-                if(s.charAt(i) == s.charAt(j) && i != j){
-                    uni = false;
+            char ch = s.charAt(i);
+            boolean found = false;
+            for(int j =0;j<arr.length;j++){
+                if(i == j){
+                    continue;
+                }
+                if(ch != arr[j]){
+                    found = true;
+                }
+                else{
+                    found = false;
                     break;
                 }
             }
-            if(uni){
-                n = i;
-                break;
+            if(found){
+                return i;
             }
-        }return n;
+
+        }return -1;
     }
 }
