@@ -1,29 +1,23 @@
 class Solution {
     public int firstUniqChar(String s) {
-        if(s.length() == 1){
-            return 0;
-        }
-
-        char[] arr = s.toCharArray();
-        for(int i =0;i<s.length();i++){
+        HashMap<Character,Integer> hm = new HashMap<>();
+        ArrayList<Character> al = new ArrayList<>();
+        for(int i=0;i<s.length();i++){
             char ch = s.charAt(i);
-            boolean found = false;
-            for(int j =0;j<arr.length;j++){
-                if(i == j){
-                    continue;
-                }
-                if(ch != arr[j]){
-                    found = true;
-                }
-                else{
-                    found = false;
-                    break;
-                }
+            hm.put(ch,hm.getOrDefault(ch,0)+1);
+        }
+        for(Map.Entry<Character,Integer> entry : hm.entrySet()){
+            if(entry.getValue() == 1){
+                al.add(entry.getKey());
             }
-            if(found){
+
+        }
+        for(int i =0;i<s.length();i++){
+            if(al.contains(s.charAt(i))){
                 return i;
             }
-
-        }return -1;
+        }
+        
+        return -1;
     }
 }
