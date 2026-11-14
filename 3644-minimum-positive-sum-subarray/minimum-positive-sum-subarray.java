@@ -4,20 +4,16 @@ class Solution {
 
         for(int i =0;i<nums.size();i++){
             int sum = 0;
-            
             for(int j =i;j<nums.size();j++){
                 sum += nums.get(j);
-                int len = j - i + 1;
-                
+                int len = j - i +1;
                 if(len >= l && len <= r){
                     if(sum > 0){
-                        min = Math.min(sum , min);
+                        min = Math.min(min,sum);
                     }
-                }
-                if(len > r) break;
+                }if(len > r) break;         
             }
         }
-        
         return min == Integer.MAX_VALUE ? -1 : min;
     }
 }
